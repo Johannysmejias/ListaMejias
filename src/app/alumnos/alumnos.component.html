@@ -1,0 +1,34 @@
+
+<div class="container-fluid">
+  <h1 class="mb-3">
+    Alumnos
+  </h1>
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre completo</th>
+        <th>E-mail</th>
+        <th>Edad</th>
+        <th>Fecha de nacimiento</th>
+        <th>Curso</th>
+        <th>Top 10</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos"  [ngClass]="alumno.Top10 ? 'table-success' : ''" >
+        <td>{{alumno.id}}</td>
+        <td>{{alumno.Nombre}} {{alumno.Apellido}}</td>
+        <td>{{alumno.email}}</td>
+        <td>{{alumno.edad}} años</td>
+        <td>{{alumno.cumpleanios | date: 'longDate' }}</td>
+        <td [ngClass]="{
+          'angular' : alumno.curso == 'Angular',
+          'javascript' : alumno.curso == 'JavaScript',
+          'desarrollo' : alumno.curso == 'Desarrollo web'
+        }">{{alumno.curso}}</td>
+        <td><img *ngIf="alumno.Top10" src="https://cdn-icons-png.flaticon.com/512/2617/2617955.png" alt="" width="20px"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
